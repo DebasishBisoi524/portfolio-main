@@ -36,7 +36,7 @@ function loaderAnimation() {
         delay: 1.5,
       })
       .to("#loader", {
-        y: "100%",
+        y: "-100%",
         duration: 1.5,
         ease: "expo.inOut",
         onComplete: () => {
