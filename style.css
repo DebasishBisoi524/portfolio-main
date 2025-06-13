@@ -1,0 +1,746 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Gilroy";
+}
+
+head,
+body {
+  height: 100%;
+  width: 100%;
+}
+
+body::-webkit-scrollbar {
+  display: none;
+}
+
+@font-face {
+  font-family: "Gilroy";
+  src: url(.//fonts/Gilroy-Light.otf);
+}
+
+@font-face {
+  font-family: "Gilroy Bold";
+  src: url(./fonts/Gilroy-ExtraBold.otf);
+}
+
+#main {
+  position: relative;
+  z-index: 10;
+}
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 9998;
+  display: none;
+  pointer-events: all;
+}
+
+.alert-box {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 49%;
+  padding: 20px 40px;
+  background: linear-gradient(to top right, #fe320a, #fa7e1e);
+  color: white;
+  border-radius: 20px;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.3);
+  z-index: 9999;
+  text-align: center;
+  display: none;
+}
+
+.alert-box #alertMessage {
+  font-size: 0.9vw;
+  margin-bottom: 1.5vw;
+}
+
+.alert-box #alertButton {
+  display: flex;
+  justify-content: center;
+  gap: 1.2vw;
+}
+
+.alert-box button {
+  font-size: 0.8vw;
+  padding: 0.6vw 1.5vw;
+  background-color: #000;
+  color: #fff;
+  border: none;
+  border-radius: 40px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+.alert-box button:hover {
+  background-color: white;
+  color: #000;
+}
+
+#page1 {
+  min-height: 100vh;
+  width: 100%;
+  background-color: #efeae3;
+  position: relative;
+  padding: 0 2vw;
+}
+
+nav {
+  padding: 2vw 2vw;
+  height: 100px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#loader {
+  height: 100%;
+  width: 100%;
+  background-color: #000;
+  position: fixed;
+  top: 0;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#loader h1 {
+  font-size: 4vw;
+  font-family: "Gilroy Bold";
+  font-weight: 600;
+  color: transparent;
+  background-image: linear-gradient(
+    to right,
+    #feda75,
+    #fa7e1e,
+    #d62976,
+    #962fbf,
+    #4f5bd5
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  opacity: 0;
+  position: absolute;
+}
+
+.text-wrapper a {
+  text-decoration: none;
+  display: inline-block;
+  position: relative;
+  padding: 10px 30px;
+  border-radius: 50px;
+  overflow: hidden;
+  cursor: pointer;
+  font-family: "Gilroy Bold", sans-serif;
+  font-weight: 900;
+  font-size: 23px;
+  color: black;
+  border-bottom: 1px solid black;
+  box-shadow: 7px 9px 12px 1px rgba(0, 0, 0, 0.54);
+  -webkit-box-shadow: 7px 9px 12px 1px rgba(0, 0, 0, 0.54);
+  -moz-box-shadow: 7px 9px 12px 1px rgba(0, 0, 0, 0.54);
+  transition: box-shadow 0.5s ease, color 0.5s ease;
+}
+
+.text-wrapper a:active {
+  box-shadow: 7px 9px 12px 1px rgba(0, 0, 0, 0.54) inset;
+  -webkit-box-shadow: 7px 9px 12px 1px rgba(0, 0, 0, 0.54) inset;
+  -moz-box-shadow: 7px 9px 12px 1px rgba(0, 0, 0, 0.54) inset;
+}
+
+#nav-part2 {
+  display: flex;
+  align-items: center;
+  gap: 1vw;
+}
+
+#nav-part2 h4 {
+  padding: 10px 20px;
+  border: 1px solid #8a8a8a89;
+  border-radius: 50px;
+  font-weight: 500;
+  color: #000000bb;
+  transition: all ease 0.4s;
+  font-size: 18px;
+  position: relative;
+  overflow: hidden;
+}
+
+#nav-part2 h4::after {
+  content: "";
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-color: black;
+  left: 0;
+  bottom: -100%;
+  border-radius: 50%;
+  transition: all ease 0.4s;
+}
+
+#nav-part2 h4:hover::after {
+  bottom: 0;
+  border-radius: 0;
+}
+
+#nav-part2 h4 a {
+  text-decoration: none;
+  color: #000000bb;
+  position: relative;
+  z-index: 9;
+}
+
+#nav-part2 h4:hover a {
+  color: #fff;
+}
+
+#center {
+  height: 65vh;
+  width: 100%;
+  text-align: justify;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  border-bottom: 1px solid #0000003c;
+  padding-bottom: 2.5vw;
+}
+
+#left h3 {
+  width: 40vw;
+  font-size: 2vw;
+}
+
+#center h1 {
+  font-size: 7vw;
+  text-align: right;
+  line-height: 7vw;
+  font-family: "Gilroy Bold";
+}
+
+#page1 video {
+  position: relative;
+  margin-top: 4vw;
+  border-radius: 40px;
+  width: 100%;
+}
+
+#hero-shape {
+  position: absolute;
+  width: 46vw;
+  height: 36vw;
+  right: 0;
+  top: 65vh;
+}
+
+#hero-1 {
+  height: 100%;
+  width: 100%;
+  background-color: #fe320a;
+  border-top-left-radius: 50%;
+  border-bottom-left-radius: 50%;
+  filter: blur(20px);
+  position: absolute;
+  animation: anime2 5s linear infinite alternate;
+}
+
+#hero-2 {
+  height: 30vw;
+  width: 30vw;
+  background: linear-gradient(#fe320a, #fe570a);
+  border-radius: 50%;
+  filter: blur(25px);
+  position: absolute;
+  animation-name: anime2;
+  animation-duration: 5s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+#hero-3 {
+  height: 30vw;
+  width: 30vw;
+  background: linear-gradient(#fe320a, #fe570a);
+  border-radius: 50%;
+  position: absolute;
+  filter: blur(25px);
+  animation-name: anime1;
+  animation-duration: 5s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+@keyframes anime1 {
+  from {
+    transform: translate(55%, -3%);
+  }
+  to {
+    transform: translate(0%, 10%);
+  }
+}
+@keyframes anime2 {
+  from {
+    transform: translate(5%, -5%);
+  }
+  to {
+    transform: translate(-20%, 20%);
+  }
+}
+
+#page2 {
+  min-height: 100vh;
+  width: 100%;
+  background-color: #efeae3;
+  padding: 3vw 0;
+  position: relative;
+}
+
+#moving-text {
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+#moving-text::-webkit-scrollbar {
+  display: none;
+}
+
+.con {
+  white-space: nowrap;
+  display: inline-block;
+  animation-name: move;
+  animation-duration: 20s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+#moving-text h1 {
+  font-family: "GILROY BOLD";
+  font-size: 9vw;
+  display: inline-block;
+}
+
+#dot {
+  height: 70px;
+  width: 70px;
+  border-radius: 50%;
+  display: inline-block;
+  background-color: #fe320a;
+  margin: 1vw 2vw;
+}
+
+@keyframes move {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+#page2-bottom {
+  height: 80vh;
+  width: 100%;
+  padding: 4.5vw;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  z-index: 9;
+}
+
+#page2-bottom h1 {
+  font-family: "GILROY BOLD";
+  font-size: 4vw;
+  width: 70%;
+  text-align: left;
+  line-height: 4vw;
+}
+
+.split-line {
+  font-family: "GILROY BOLD";
+  font-size: 4vw;
+  line-height: 4vw;
+  width: 100%;
+  display: block;
+  text-align: left;
+}
+
+#bottom-part2 {
+  width: 20%;
+}
+
+#bottom-part2 img {
+  width: 100%;
+  border-radius: 15px;
+}
+
+#bottom-part2 p {
+  font-weight: 200;
+  margin-top: 2vw;
+  font-size: 1vw;
+}
+
+#future {
+  background: linear-gradient(to top right, #fe320a, #fea00a);
+  color: white;
+  border-radius: 6px;
+}
+
+#page2 #blob {
+  height: 33vw;
+  width: 33vw;
+  position: absolute;
+  border-radius: 50%;
+  background: linear-gradient(to top right, #fe320a, #fa7e1e);
+  top: 51%;
+  left: 32%;
+  filter: blur(20px);
+  animation: blob 6s ease-in-out infinite alternate;
+}
+
+@keyframes blob {
+  from {
+    filter: blur(20px);
+    transform: translate(10%, -10%) skew(0);
+  }
+  to {
+    filter: blur(25px);
+    transform: translate(-10%, 20%) skew(-12deg);
+  }
+}
+
+#page3 {
+  min-height: 100vh;
+  width: 100%;
+  background-color: #efeae3;
+  /* padding: 4vw 0; */
+}
+
+#page3 #sec {
+  display: flex;
+  align-items: center;
+  gap: 0.5vw;
+  padding: 3vw 4vw;
+}
+
+#gol {
+  height: 8px;
+  width: 8px;
+  border-radius: 50%;
+  display: inline-block;
+  background-color: #fe320a;
+}
+
+#sec #p {
+  position: relative;
+  font-size: 1.2vw;
+  font-family: "GILROY";
+}
+
+#p::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  height: 2px;
+  width: 0%;
+  background-color: #fe320a;
+  transition: width 0.3s ease-in-out;
+}
+
+#p:hover::before {
+  width: 100%;
+}
+
+.list {
+  position: relative;
+  height: 150px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 0 4vw;
+  border-bottom: 1px solid #000;
+  overflow: hidden;
+}
+
+.list h2 {
+  font-size: 3vw;
+  font-family: "GILROY BOLD";
+  z-index: 1;
+  position: relative;
+  transition: all 0.4s ease;
+}
+
+.list .overlay {
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(to top right, #fa7e1e, #fe320a);
+  position: absolute;
+  left: 0;
+  top: -100%;
+  transition: all ease 0.5s;
+  z-index: 0;
+}
+
+.list a {
+  text-decoration: none;
+  color: #000;
+}
+
+.list:hover .overlay {
+  top: 0;
+  color: #fff;
+}
+
+.list:hover h2 {
+  color: white;
+}
+
+#fixed-image {
+  height: 14vw;
+  width: 11vw;
+  border-radius: 10px;
+  position: fixed;
+  z-index: 99;
+  opacity: 0;
+  pointer-events: none;
+  background-size: cover;
+  background-position: center;
+  transform: translate(-50%, -50%);
+  transition: opacity 0.3s ease;
+  will-change: transform, opacity;
+}
+
+#page4 {
+  min-height: 137vh;
+  max-width: 100vw;
+  background-color: #efeae3;
+  overflow: hidden;
+  padding: 6vw 0;
+}
+
+#github-box {
+  height: 120vh;
+  margin: 0 2vw;
+  background-color: #000;
+  border-radius: 21px;
+  display: flex;
+  align-items: center;
+  opacity: 0;
+  transform: scale(0.5);
+}
+
+#github-box img {
+  width: 114%;
+  height: 100%;
+  background-size: cover;
+  border-radius: 21px;
+}
+
+#github-box #left-box {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+#tabs {
+  position: relative;
+  border-left: 2px solid #464444;
+  margin-left: 14vw;
+}
+
+#left-box h2 {
+  font-family: "GILROY";
+  font-size: 4.5vw;
+  font-weight: bolder;
+  position: relative;
+  cursor: pointer;
+  color: #504a45;
+}
+
+#tabs {
+  position: relative;
+  border-left: 6px solid #504a45;
+  padding-left: 2vw;
+}
+
+#tabs h2 a {
+  text-decoration: none;
+  color: #504a45;
+}
+
+#desc {
+  font-family: "GILROY";
+  color: #efeae3;
+  padding: 1vw 0;
+  font-size: 1.1vw;
+  width: 60%;
+  margin-left: 13vw;
+}
+
+#Design {
+  right: 2vw;
+}
+
+#github-box #left-sec {
+  color: #efeae3;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+#page5 {
+  height: 100vh;
+  width: 100%;
+}
+
+#footer {
+  position: fixed;
+  height: 100vh;
+  width: 100%;
+  background-color: #000;
+  z-index: 9;
+  bottom: 0;
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: column;
+  padding: 1vw 3vw;
+  overflow: hidden;
+}
+
+#footer #shape1,
+#footer #shape2 {
+  position: absolute;
+  filter: blur(50px);
+  background: #fe320a;
+  z-index: 1;
+}
+
+#footer #shape1 {
+  height: 90%;
+  width: 90%;
+  top: -50%;
+  left: -20%;
+  animation: shape1 3s linear alternate infinite;
+}
+
+#footer #shape2 {
+  height: 90%;
+  width: 70%;
+  top: -27%;
+  right: -27%;
+  animation: shape2 4s linear alternate infinite;
+}
+
+@keyframes shape1 {
+  from {
+    transform: rotate(-10deg);
+  }
+
+  to {
+    transform: rotate(-20deg);
+  }
+}
+
+@keyframes shape2 {
+  from {
+    transform: rotate(30deg);
+  }
+
+  to {
+    transform: rotate(45deg);
+  }
+}
+
+#footer h1 {
+  font-family: "Gilroy Bold";
+  font-size: 17vw;
+  text-align: center;
+  color: #efeae3;
+  text-transform: uppercase;
+  position: relative;
+  z-index: 2;
+}
+
+#footer-top {
+  height: 20vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 3.4vw;
+  z-index: 2;
+  position: relative;
+}
+
+#footer-left h2 {
+  font-family: "Gilroy Bold";
+  font-size: 2vw;
+  color: #efeae3;
+  text-align: left;
+  width: 63vw;
+}
+
+#footer-right p {
+  font-size: 1.5vw;
+  font-family: "Gilroy";
+  text-align: left;
+  color: #efeae3;
+}
+
+#footer-bottom {
+  border-top: 1px solid #efeae3;
+  height: 10vh;
+  width: 100%;
+  position: relative;
+  z-index: 2;
+}
+
+#links {
+  display: flex;
+  justify-content: space-between;
+  padding: 1vw 0;
+}
+
+#links h5 a {
+  text-decoration: none;
+  color: #efeae3;
+  font-family: "Gilroy Bold", sans-serif;
+  font-size: 1.7vw;
+}
+
+#link-img {
+  width: 72px;
+  height: 72px;
+  border-radius: 13px;
+  position: fixed;
+  pointer-events: none;
+  z-index: 999;
+  background-size: cover;
+  background-position: center;
+  transform: translate(-50%, -50%) scale(0);
+  opacity: 0;
+}
+
+#npx {
+  font-family: "Gilroy Bold";
+  background-color: #000;
+  color: white;
+  border-radius: 6px;
+  padding: 0 4px;
+}
+
+.char-style {
+  font-family: "GILROY BOLD";
+}
