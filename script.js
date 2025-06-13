@@ -98,7 +98,7 @@ function githubScroll() {
     const rect = githubBox.getBoundingClientRect();
     // When #github-box is about 40% visible from bottom of viewport, trigger animation
     if (
-      rect.top < window.innerHeight * 0.6 &&
+      rect.top < window.innerHeight * 0.8 &&
       !githubBox.classList.contains("animated")
     ) {
       githubBox.classList.add("animated");
@@ -398,14 +398,13 @@ function footerScroll() {
   gsap.from(split.chars, {
     scrollTrigger: {
       trigger: "#footer",
-      start: "32% 60%", // when top of footer hits 60% of viewport
+      start: "32% center", // when top of footer hits 60% of viewport
       once: true, // run only once
       // markers: true,
     },
     y: 100,
     opacity: 0,
     duration: 1.6,
-    delay: 0.4,
     ease: "power4.out",
     stagger: 0.09,
   });
