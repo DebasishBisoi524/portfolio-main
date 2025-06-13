@@ -374,7 +374,7 @@ function footer() {
 
       gsap.to(linkImg, {
         scale: 1,
-        duration: 0.3,
+        duration: 0.7,
         autoAlpha: 1,
       });
     });
@@ -382,7 +382,7 @@ function footer() {
     link.addEventListener("mouseleave", () => {
       gsap.to(linkImg, {
         scale: 0,
-        duration: 0.3,
+        duration: 0.7,
         autoAlpha: 0,
       });
     });
