@@ -110,7 +110,7 @@ function githubScroll() {
           scale: 1,
           duration: 1.5,
           ease: "power2.out",
-        }
+        },
       );
     }
   });
@@ -166,7 +166,7 @@ function page2TextAnimation() {
       duration: 1.8,
       ease: "power2.out",
     },
-    0
+    0,
   ) // start immediately
 
     .from(
@@ -178,7 +178,7 @@ function page2TextAnimation() {
         stagger: 0.07,
         ease: "power2.out",
       },
-      0
+      0,
     );
 }
 
@@ -192,7 +192,7 @@ function alertBoxAnimation() {
   const video = document.querySelector("#bgvideo");
 
   const RESUME_URL =
-    "https://drive.google.com/file/d/1S44pvvrOsjbhxHgFAEobyIjp6aWb87WW/view?usp=sharin";
+    "https://drive.google.com/file/d/1ltqMIoSeLJhFuRDmW30wAtLxfhSeTmnf/view?usp=drive_link";
 
   function showAlertBox() {
     document.body.style.overflow = "hidden";
@@ -204,7 +204,7 @@ function alertBoxAnimation() {
     gsap.fromTo(
       backdrop,
       { opacity: 0 },
-      { opacity: 1, duration: 0.4, ease: "power1.out" }
+      { opacity: 1, duration: 0.4, ease: "power1.out" },
     );
 
     gsap.fromTo(
@@ -215,7 +215,7 @@ function alertBoxAnimation() {
         top: "20%",
         opacity: 1,
         ease: "power3.out",
-      }
+      },
     );
   }
 
@@ -268,13 +268,13 @@ function alertBoxAnimation() {
             },
           });
         },
-      }
+      },
     );
   }
 
   resumeLink.addEventListener("click", function (e) {
     e.preventDefault();
-    showAlertBox("resume");
+    showAlertBox();
   });
 
   yesBtn.addEventListener("click", function () {
@@ -293,52 +293,46 @@ function alertBoxAnimation() {
 
 // github-box Content
 function githubBoxContentAnimation() {
-  const Design = document.querySelector("#Design");
-  const design = document.querySelector("#design");
-  const Project = document.querySelector("#Project");
-  const project = document.querySelector("#project");
-  const Execution = document.querySelector("#Execution");
-  const execution = document.querySelector("#execution");
+  const sections = [
+    {
+      button: "#Design",
+      label: "#design",
+      text: "Your code design is truly unique—why bother with clarity or structure when chaos is so much more exciting? Functions are optional, naming is abstract art, and DRY clearly stands for “Don’t Repeat Yelling.” It’s less software engineering, more digital scavenger hunt for your teammates.",
+    },
+    {
+      button: "#Project",
+      label: "#project",
+      text: "Projects in code are a wild ride—hours of debugging, mysterious errors at 3 AM, and features that break just by existing. It’s exhausting, mildly traumatic, yet somehow thrilling—like solving a puzzle that keeps changing the rules just to mess with you.",
+    },
+    {
+      button: "#Execution",
+      label: "#execution",
+      text: "Execution is where dreams go to die—plans look great on paper until the code decides otherwise. Deadlines loom, bugs throw surprise parties, and nothing works until five minutes before the demo. Still, there’s a weird thrill in watching chaos barely hold itself together.",
+    },
+  ];
+
   const desc = document.querySelector("#desc");
   const image = document.querySelector("#page4-img");
 
-  Design.addEventListener("click", function () {
-    desc.textContent =
-      "Your code design is truly unique—why bother with clarity or structure when chaos is so much more exciting? Functions are optional, naming is abstract art, and DRY clearly stands for “Don’t Repeat Yelling.” It’s less software engineering, more digital scavenger hunt for your teammates.";
-    var add = Design.getAttribute("data-img");
-    image.setAttribute("src", add);
-    Design.style.right = "2vw";
-    design.style.color = "#EFEAE3";
-    Project.style.right = "0vw";
-    project.style.color = "#504A45";
-    Execution.style.right = "0vw";
-    execution.style.color = "#504A45";
-  });
+  sections.forEach(({ button, label, text }) => {
+    const btn = document.querySelector(button);
+    const lbl = document.querySelector(label);
 
-  Project.addEventListener("click", function () {
-    desc.textContent =
-      "Projects in code are a wild ride—hours of debugging, mysterious errors at 3 AM, and features that break just by existing. It’s exhausting, mildly traumatic, yet somehow thrilling—like solving a puzzle that keeps changing the rules just to mess with you.";
-    var add = Project.getAttribute("data-img");
-    image.setAttribute("src", add);
-    Project.style.right = "2vw";
-    project.style.color = "#EFEAE3";
-    Design.style.right = "0vw";
-    design.style.color = "#504A45";
-    Execution.style.right = "0vw";
-    execution.style.color = "#504A45";
-  });
+    btn.addEventListener("click", () => {
+      // Update content
+      desc.textContent = text;
+      image.setAttribute("src", btn.getAttribute("data-img"));
 
-  Execution.addEventListener("click", function () {
-    desc.textContent =
-      "Execution is where dreams go to die—plans look great on paper until the code decides otherwise. Deadlines loom, bugs throw surprise parties, and nothing works until five minutes before the demo. Still, there’s a weird thrill in watching chaos barely hold itself together.";
-    var add = Execution.getAttribute("data-img");
-    image.setAttribute("src", add);
-    Design.style.right = "0vw";
-    design.style.color = "#504A45";
-    Project.style.right = "0vw";
-    project.style.color = "#504A45";
-    Execution.style.right = "2vw";
-    execution.style.color = "#EFEAE3";
+      // Reset all styles first
+      sections.forEach(({ button, label }) => {
+        document.querySelector(button).style.right = "0vw";
+        document.querySelector(label).style.color = "#504A45";
+      });
+
+      // Highlight the active one
+      btn.style.right = "2vw";
+      lbl.style.color = "#EFEAE3";
+    });
   });
 }
 
